@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:movie_app/secrets.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -15,8 +16,8 @@ class HomeScreen extends StatefulWidget {
 
 
 class _HomeScreenState extends State<HomeScreen> {
-String apikey = "d30cc88bc0168c4e5a9385783eb9fe3f";
-String accesstoken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMzBjYzg4YmMwMTY4YzRlNWE5Mzg1NzgzZWI5ZmUzZiIsInN1YiI6IjYzYWZlZThmNTc1MzBlMDA4NTAxMjdkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wrRM0IPSBjbFO-CcvxU5GsyuHeatUlZlpgV5d3TANLw";
+String apikey = Secrets.apikey;
+String accesstoken = Secrets.accesstoken;
 final TextEditingController  _controller = TextEditingController();
 List<MovieListElements> movieList = [];
   @override
@@ -89,7 +90,7 @@ onSubmited(String value)async{
   }
   Future<void> searchMovies2(String query) async {
     final response = await http.get(
-      Uri.parse('https://api.themoviedb.org/3/search/movie?api_key=d30cc88bc0168c4e5a9385783eb9fe3f&query=$query'),
+      Uri.parse('https://api.themoviedb.org/3/search/movie?api_key=$apikey&query=$query'),
     );
 
     if (response.statusCode == 200) {
@@ -101,7 +102,7 @@ onSubmited(String value)async{
   }
   Future<void> searchMoviesByKeyword(String keyword) async {
     final response = await http.get(
-      Uri.parse('https://api.themoviedb.org/3/search/keyword?api_key=d30cc88bc0168c4e5a9385783eb9fe3f&query=$keyword'),
+      Uri.parse('https://api.themoviedb.org/3/search/keyword?api_key=$apikey&query=$keyword'),
     );
 
     if (response.statusCode == 200) {
