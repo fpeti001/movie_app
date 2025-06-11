@@ -174,21 +174,32 @@ Widget listView(){
       itemCount: movieList.length, // Dynamic list length
       itemBuilder: (context, index) {
         return Card(
-          child: Column(
+          child: Row(
+
             children: [
-              ListTile(
-                title: Text(movieList[index].title),
-                subtitle: Text(movieList[index].overview)
-                ,
+              Expanded(
+                  flex: 1,
+                  child: Image.network("https://image.tmdb.org/t/p/w500/${movieList[index].posterPath}")),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(movieList[index].title),
+                      subtitle: Text(movieList[index].overview)
+                      ,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.star, color: Colors.yellow, size: 30.0),
+                    Text("${movieList[index].voteAverage}"),
+                    Icon(Icons.favorite, color: Colors.red, size: 30.0),
+                        Text("${movieList[index].popularity}"),
+                      ],
+                    )
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Icon(Icons.star, color: Colors.yellow, size: 30.0),
-              Text("${movieList[index].voteAverage}"),
-              Icon(Icons.favorite, color: Colors.red, size: 30.0),
-                  Text("${movieList[index].popularity}"),
-                ],
-              )
             ],
           ),
         );
